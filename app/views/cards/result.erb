@@ -1,0 +1,10 @@
+<h1>Card Result</h1>
+<h2><%=@output%></h2>
+
+<form method="get" action="/decks/<%=@deck_id%>">
+  <input type="hidden" name="i_a" value="<%=@i_a%>">
+  <input type="hidden" name="index" value="<%=@index%>">
+  <input type="hidden" name="f_t" value="<%=params[:f_t]%>">
+  <input type="hidden" name="a_a" value="<%=params[:a_a]%>">
+  <input type="submit" value="Next Card">
+</form>

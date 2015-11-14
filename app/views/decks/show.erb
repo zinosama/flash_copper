@@ -1,0 +1,17 @@
+<h1><%= @deck.name %> </h1>
+
+<p>Status: <%= @index %></p>
+<p><%= @card.question %></p>
+
+<form method="GET" action="/cards/result">
+
+  <input type="hidden" name="answer" value="<%=@card.answer%>">
+  <input type="hidden" name="deck_id" value="<%=@deck.id%>">
+  <input type="hidden" name="index" value="<%=@index%>">
+  <input type="hidden" name="f_t" value="<%=@f_t%>">
+  <input type="hidden" name="i_a" value="<%=@i_a%>">
+  <input type="hidden" name="a_a" value="<%=@a_a%>">
+
+  <input type="text" name="guess" placeholder="Guess">
+  <input type="submit" value="Submit Guess">
+</form>
