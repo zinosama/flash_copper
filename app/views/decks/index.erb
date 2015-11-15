@@ -1,0 +1,21 @@
+</div>
+<div id="home_img"></div>
+<div class="container">
+<h1 id="home_title">FLASH COPPER</h1>
+
+<div class="row" id="home_row">
+  <%@decks.each do |deck|%>
+  <div class="col-xs-6 col-md-3">
+    <a href="/decks/<%=deck.id%>/histories/new" class="thumbnail">
+      <img src="/img/<%=deck.name%>.jpg" alt="deck name">
+    </a>
+  </div>
+  <%end%>
+</div>
+
+<!-- <ul>
+  <%@decks.each do |deck|%>
+  <li><a href="/decks/<%=deck.id%>/histories/new"><%=deck.name%></a></li>
+  <%end%>
+</ul> -->
+
