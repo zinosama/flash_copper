@@ -16,8 +16,11 @@ post '/users' do
 end
 
 get '/users/histories' do
-  @user = User.find(session[:id])
-  @histories = @user.compile_deck_histories
-
-  erb :'users/show'
+  if session[:id]
+    @user = User.find(session[:id])
+    @histories = @user.compile_deck_histories
+    erb :'users/show'
+  else
+    erb :'sessions/new'
+  end
 end

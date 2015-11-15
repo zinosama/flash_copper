@@ -7,9 +7,13 @@ end
 
 #---------HIstory controller
 get '/decks/:deck_id/histories/new' do
-  new_history = History.create(user_id:session[:id],deck_id:params[:deck_id])
-  new_card_id = new_history.deck.cards.first.id
-  redirect "/histories/#{new_history.id}/guesses/new?new_card_id=#{new_card_id}"
+  if session[:id]
+    new_history = History.create(user_id:session[:id],deck_id:params[:deck_id])
+    new_card_id = new_history.deck.cards.first.id
+    redirect "/histories/#{new_history.id}/guesses/new?new_card_id=#{new_card_id}"
+  else
+    redirect '/sessions/new'
+  end
 end
 
 delete '/histories/:history_id/delete' do
@@ -57,10 +61,10 @@ post '/guesses/:guess_id/check' do
   @guess=Guess.find(params[:guess_id])
   if @guess.card.answer.downcase==user_input.downcase.strip #do we need card.first?
     @guess.correct=true
-    @output="Correct. Click next to move on."
+    @output="<p class='guess_result'>CORRECT</p><p class='guess_instruction'>Click next to move on</p>"
   else
     @guess.correct=false
-    @output="Wrong. The right answer is #{@guess.card.answer}. Click next to move on."
+    @output="<p class='guess_result'>WRONG</p><p class='guess_instruction'> The right answer is <span class='guess_right_answer'>#{@guess.card.answer}</span>. Click next to move on.</p>"
   end
     @guess.save
     erb :"guesses/result" #this will pass on history id

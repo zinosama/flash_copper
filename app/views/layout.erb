@@ -29,23 +29,28 @@
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href='/'>Flash Copper</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <%if session[:id]%>
-        <li><a href='/users/histories'><%=session[:username]%></a></li>
-        <li><a href='/sessions/logout'>Log Out</a></li>
-      <%else%>
-        <li><a href='/users/new'>Register</a></li>
-        <li><a href='/sessions/new'>Log In</a></li>
-      <%end%>
-      </ul>
-    </div>
+    <ul class="nav navbar-nav">
+      <li><a href='/'>Flash Copper</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <%if session[:id]%>
+      <li><a href='/users/histories'><%=session[:username].upcase%></a></li>
+      <li><a href='/sessions/logout'>Log Out</a></li>
+    <%else%>
+      <li><a href='/users/new'>Register</a></li>
+      <li><a href='/sessions/new'>Log In</a></li>
+    <%end%>
+    </ul>
   </nav>
   <div class="container">
   <%= yield %>
   </div>
+  <footer>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <ul class="nav navbar-nav">
+        <li><a href='https://github.com/zinosama/flash_copper'>Zino, Sam &amp; Courteney @ DBC. 11.15.2015</a></li>
+      </ul>
+    </nav>
+  </footer>
 </body>
 </html>
