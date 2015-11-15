@@ -7,14 +7,33 @@
       <th>Number of Question</th>
       <th>First Guesses Correct</th>
       <th>Total Guesses</th>
+      <th></th>
+      <th></th>
     </tr>
     <% histories.each do |history| %>
-    <tr>
-      <td><%= history.updated_at.to_date %></td>
-      <td><%= history.deck.cards.length %></td>
-      <td><%= history.compile_result[:first_correct] %></td>
-      <td><%= history.guesses.length %></td>
-    </tr>
+      <%if !history.finished%>
+        <tr>
+      <%else%>
+        <tr class="success">
+      <%end%>
+        <td><%= history.updated_at.to_date %></td>
+        <td><%= history.deck.cards.length %></td>
+        <td><%= history.compile_result[:first_correct] %></td>
+        <td><%= history.guesses.length %></td>
+        <td>
+          <%if history.finished%>
+            <a href="/histories/<%=history.id%>/guesses" class="btn btn-sm btn-default">View</a>
+          <%else%>
+            <a href="/histories/<%=history.id%>/guesses/new" class="btn btn-sm btn-default">Continue</a>
+          <%end%>
+        </td>
+        <td>
+          <form method="post" action="/histories/<%=history.id%>/delete">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-sm btn-default">Delete</button>
+          </form>
+        </td>
+      </tr>
     <% end %>
   </table>
 <% end %>

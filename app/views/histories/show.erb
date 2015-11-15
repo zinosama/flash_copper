@@ -1,3 +1,11 @@
-<h1><%=@history.deck.name%></h1>
-<p>You've completed a round of <%=@history.deck.name%>. You answered <%=@result[:first_correct]%>/<%=@history.deck.cards.length%> cards correctly on the first try. You submitted <%=@result[:total_attempts]%> total guesses before each card was answered correctly.</p>
-
+<h1>History Detail</h1>
+<table class="table table-hover">
+  <tr><th>Question</th></tr>
+  <%@guesses.each do |guess|%>
+    <%if guess.correct%>
+      <tr><td><a href="/cards/<%=guess.card.id%>" class="history_listing"><%=guess.card.question%></a></td></tr>
+    <%else%>
+      <tr class="danger"><td><a href="/cards/<%=guess.card.id%>" class="history_listing"><%=guess.card.question%></a></td></tr>
+    <%end%>
+  <%end%>
+</table>

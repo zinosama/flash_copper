@@ -7,6 +7,7 @@ post '/users' do
   if user.valid?
     user.save
     session[:id]=user.id
+    session[:username]=user.username
     redirect '/'
   else
     errors=user.errors.full_messages

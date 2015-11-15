@@ -4,6 +4,33 @@ body{
 .navbar-right{
   padding-right: 2em;
 }
+.history_listing{
+  text-decoration: none;
+}
+.history_listing:hover{
+  text-decoration: none;
+}
+.card_question{
+  font-size:2em;
+  font-family: 'Caveat', cursive;
+}
+.card_deck{
+  text-align: center;
+  font-size: 9em;
+  font-weight: 800;
+  line-height: 0.65em;
+  word-spacing: 0.1em;
+  padding-bottom: 0.7em;
+  padding-top: 0.3em;
+  font-family: 'Seaweed Script', cursive;
+  border-bottom: 1px solid #B3B3B3;
+  margin-bottom: 0.2em;
+}
+.card_submit{
+  font-family: 'Seaweed Script', cursive;
+  line-height: 0.5em;
+  font-size: 1.5em;
+}
 #home_img{
   padding-top: 0;
   margin-top: 0;

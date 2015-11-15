@@ -1,12 +1,12 @@
-<p style="font-size:2em;">Card: <%=@new_guess.card.question%></p>
+<p class="card_deck"><%=@history.deck.name%></p>
+<p class="card_question"><%=@new_guess.card.question%></p>
 <form method="post" action="/guesses/<%=@new_guess.id%>/check">
   <div class="form-group">
-    <label for="user_input">Your Response</label>
-    <input type="text" name="user_input" id="user_input" class="form-control" placeholder="Guess">
+    <input type="text" name="user_input" id="user_input" class="form-control" placeholder="Your Answer">
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-lg btn-default btn-block">Enter</button>
+    <button type="submit" class="btn btn-lg btn-default btn-block"><p class="card_submit">Enter</p></button>
   </div>
 </form>
 

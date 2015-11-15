@@ -1,3 +1,10 @@
+#---------Card controller
+get '/cards/:card_id' do
+  @card=Card.find(params[:card_id])
+  erb :'cards/show'
+end
+
+
 #---------HIstory controller
 get '/decks/:deck_id/histories/new' do
   new_history = History.create(user_id:session[:id],deck_id:params[:deck_id])
@@ -5,6 +12,17 @@ get '/decks/:deck_id/histories/new' do
   redirect "/histories/#{new_history.id}/guesses/new?new_card_id=#{new_card_id}"
 end
 
+delete '/histories/:history_id/delete' do
+  history=History.find(params[:history_id])
+  history.destroy
+  redirect "/users/histories"
+end
+
+get '/histories/:history_id/guesses' do
+  history=History.find(params[:history_id])
+  @guesses=history.guesses
+  erb :'histories/show'
+end
 #---------Guess controller
 get '/histories/:history_id/guesses/new' do
   @history=History.find(params[:history_id])
@@ -16,7 +34,9 @@ get '/histories/:history_id/guesses/new' do
     card = @history.new_card
     if !card
       @result=@history.compile_result
-      erb :'histories/show'
+      @history.finished=true
+      @history.save
+      erb :'histories/success'
     else
 
       if @history.check_first_round

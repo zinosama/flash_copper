@@ -3,6 +3,7 @@ class CreateHistories < ActiveRecord::Migration
     create_table :histories do |t|
       t.integer :user_id, null:false
       t.integer :deck_id, null:false
+      t.boolean :finished, null:false, default:false
 
       t.timestamps null:false
     end
